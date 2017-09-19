@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/09/18 13:42:45 by qdequele         ###   ########.fr        #
+#    Updated: 2017/09/19 19:05:59 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,12 @@ endif
 #Define the program
 NAME		=	libft_malloc_$(HOSTTYPE)
 
-_SRC		=	block.c\
-				free.c\
+_SRC		=	free.c\
 				main.c\
 				malloc.c\
 				realloc.c\
 				show.c\
-				tools.c\
-				zone.c
+				tools.c
 
 _INC		=	malloc.h
 

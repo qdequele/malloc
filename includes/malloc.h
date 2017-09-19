@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/19 15:55:30 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:06:17 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define TINY_SIZE 50
 # define SMALL_SIZE 400
+# define DEBUG 0
 
 # define T_BLOCK_SIZE sizeof(size_t)
 # define T_ZONE_SIZE sizeof(t_zone)
@@ -60,31 +61,25 @@ typedef struct		s_mem
 // MAIN
 
 void			free(void *ptr);
-void			*malloc(size_t size);
 void			*realloc(void *ptr, size_t size);
 
-// BLOCK.C
+// MALLOC.C
 
-void			foreach_blocks(t_zone **zone, void (*f)(void *ptr));
-void			init_all_blocks(void *ptr);
-void			*register_free_block(size_t size);
+void			*malloc(size_t size);
+t_zone			*create_zone(size_t size);
+void			zone_addend(t_zone **alst, t_zone *new);
+t_zone			*add_zone(size_t size);
+void			init_all_blocks(t_zone **zone);
 
 // SHOW.C
 
-int				show_debug_zone(t_zone **zone, char *type);
-void			show_debug_mem(void);
+void			show_alloc_mem(void);
 
 // TOOLS.C
 
 void			*smmap(size_t len);
 int				optim_nb_block(size_t len);
 t_mem			*get_mem(void);
-
-// ZONE.C
-
-t_zone			*create_zone(size_t size);
-void			zone_addend(t_zone **alst, t_zone *new);
-t_zone			*add_zone(size_t size);
 t_zone			**get_zones(size_t size);
 
 #endif

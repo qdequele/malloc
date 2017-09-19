@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/19 17:35:19 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:02:10 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,9 @@ int		optim_nb_block(size_t len)
 	f_len = ((c_len / PAGE_SIZE) + 1) * PAGE_SIZE;
 	type = ZONE_TYPE(len);
 	if (type == TINY)
-	{
-		printf("optim_nb_block TINY - c_len: %zu | f_len: %zu\n", c_len, f_len);
 		return ((f_len - T_ZONE_SIZE) / (T_BLOCK_SIZE + TINY_SIZE));
-	}
 	else if (type == SMALL)
-	{
-		printf("optim_nb_block SMALL - c_len: %zu | f_len: %zu\n", c_len, f_len);
 		return ((f_len - T_ZONE_SIZE) / (T_BLOCK_SIZE + SMALL_SIZE));
-	}
 	else
 		return (1);
 }
@@ -50,4 +44,17 @@ t_mem		*get_mem(void)
 	static t_mem	mem;
 
 	return (&mem);
+}
+
+t_zone		**get_zones(size_t size)
+{
+	t_mem	*mem;
+
+	mem = get_mem();
+	if (ZONE_TYPE(size) == TINY)
+		return (&mem->tiny);
+	else if (ZONE_TYPE(size) == SMALL)
+		return (&mem->small);
+	else
+		return (&mem->large);
 }
