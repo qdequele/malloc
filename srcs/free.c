@@ -6,9 +6,13 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/12 14:58:36 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/15 11:36:57 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/malloc.h"
 
-#include <malloc.h>
+void			free(void *ptr)
+{
+	(void)ptr;
+}
