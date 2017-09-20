@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/19 19:06:17 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/20 16:29:23 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,13 @@
 # define MAP MAP_ANON | MAP_PRIVATE
 
 # define TINY_SIZE 50
-# define SMALL_SIZE 400
-# define DEBUG 0
+# define SMALL_SIZE 300
+# define DEBUG 1
 
 # define T_BLOCK_SIZE sizeof(size_t)
 # define T_ZONE_SIZE sizeof(t_zone)
+
 # define VAL(X) *(size_t *)X
-
-# define TINY_ZONE_SIZE(X) (T_ZONE_SIZE + (X * T_BLOCK_SIZE) + (X * TINY_SIZE))
-# define SMALL_ZONE_SIZE(X) (T_ZONE_SIZE + (X * T_BLOCK_SIZE) + (X * SMALL_SIZE))
-
-# define ZONE_TYPE(SIZE) ((SIZE <= TINY_SIZE) ? TINY : (SIZE <= SMALL_SIZE) ? SMALL : LARGE)
-# define ZONE_SIZE(TYPE) ((TYPE == TINY) ? TINY_SIZE : SMALL_SIZE)
 
 # define PAGE_SIZE sysconf(_SC_PAGESIZE)
 
@@ -49,6 +44,7 @@ typedef struct		s_zone
 	t_zone_type		type;
 	size_t			nb_blocks;
 	size_t			nb_max_blocks;
+	size_t			zone_length;
 }					t_zone;
 
 typedef struct		s_mem
@@ -81,5 +77,8 @@ void			*smmap(size_t len);
 int				optim_nb_block(size_t len);
 t_mem			*get_mem(void);
 t_zone			**get_zones(size_t size);
-
+int				zone_size_by_size(size_t size);
+int				zone_size_by_type(t_zone_type type);
+t_zone_type		zone_type(size_t size);
+size_t	calculate(size_t nb, size_t size);
 #endif
