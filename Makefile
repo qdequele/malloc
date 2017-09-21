@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/09/19 19:05:59 by qdequele         ###   ########.fr        #
+#    Updated: 2017/09/21 10:09:04 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ INCLUDES	=	-I ./includes/
 all: $(NAME) $(INC)
 
 $(NAME):
-	@gcc $(CFLAGS) $(SRC) $(INCLUDES) -o test
+	@gcc $(CFLAGS) $(SRC) $(INCLUDES) -o exec
 	@echo $(NAME) " - compiled"
 
 clean:
