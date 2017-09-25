@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/09/21 10:09:04 by qdequele         ###   ########.fr        #
+#    Updated: 2017/09/21 14:02:10 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ endif
 
 #Define the program
 NAME		=	libft_malloc_$(HOSTTYPE)
-
+EXEC		=	a.out
 _SRC		=	free.c\
 				main.c\
 				malloc.c\
@@ -29,13 +29,14 @@ _INC		=	malloc.h
 INC			=	$(addprefix includes/,$(_INC))
 SRC			=	$(addprefix srcs/,$(_SRC))
 OBJ			=	$(SRC:.c=.o)
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g -ggdb
 INCLUDES	=	-I ./includes/
 
 all: $(NAME) $(INC)
 
 $(NAME):
-	@gcc $(CFLAGS) $(SRC) $(INCLUDES) -o exec
+	@gcc $(CFLAGS) $(SRC) $(INCLUDES) -o $(EXEC)
+	@chmod 755 $(EXEC)
 	@echo $(NAME) " - compiled"
 
 clean:

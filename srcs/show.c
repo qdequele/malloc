@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/21 09:18:21 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/21 13:42:21 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		show_debug_zone(t_zone **zone, char *type)
 				printf("n°%zu : %p - %p : %zu octets\n",i, ptr + T_BLOCK_SIZE, ptr + T_BLOCK_SIZE + VAL(ptr), VAL(ptr));
 			i++;
 			sum += VAL(ptr);
-			ptr += T_BLOCK_SIZE + zone_size_by_type(z->type);
+			ptr += T_BLOCK_SIZE + z->type;
 		}
 		z = z->next;
 
@@ -65,7 +65,7 @@ int		show_alloc_zone(t_zone **zone, char *type)
 				printf("%p - %p : %zu octets\n", ptr + T_BLOCK_SIZE, ptr + T_BLOCK_SIZE + VAL(ptr), VAL(ptr));
 			i++;
 			sum += VAL(ptr);
-			ptr += T_BLOCK_SIZE + zone_size_by_type(z->type);
+			ptr += T_BLOCK_SIZE + z->type;
 		}
 		z = z->next;
 
@@ -80,15 +80,15 @@ void			show_alloc_mem(void)
 	sum = 0;
 	if (DEBUG)
 	{
-		sum += show_debug_zone(get_zones(TINY_SIZE), "TINY");
-		sum += show_debug_zone(get_zones(SMALL_SIZE), "SMALL");
-		sum += show_debug_zone(get_zones(SMALL_SIZE + 10), "LARGE");
+		sum += show_debug_zone(get_zones(TINY), "TINY");
+		sum += show_debug_zone(get_zones(SMALL), "SMALL");
+		sum += show_debug_zone(get_zones(SMALL + 10), "LARGE");
 	}
 	else
 	{
-		sum += show_alloc_zone(get_zones(TINY_SIZE), "TINY");
-		sum += show_alloc_zone(get_zones(SMALL_SIZE), "SMALL");
-		sum += show_alloc_zone(get_zones(SMALL_SIZE + 10), "LARGE");
+		sum += show_alloc_zone(get_zones(TINY), "TINY");
+		sum += show_alloc_zone(get_zones(SMALL), "SMALL");
+		sum += show_alloc_zone(get_zones(SMALL + 10), "LARGE");
 	}
 	
 	printf("Total %zu octets\n", sum);

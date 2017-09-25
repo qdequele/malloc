@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/21 10:06:50 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/21 13:44:06 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # define PROT PROT_READ | PROT_WRITE
 # define MAP MAP_ANON | MAP_PRIVATE
 
-# define TINY_SIZE 50
-# define SMALL_SIZE 300
 # define DEBUG 1
 
 # define T_BLOCK_SIZE sizeof(size_t)
@@ -33,9 +31,9 @@
 
 typedef enum		e_zone_type
 {
-	TINY,
-	SMALL,
-	LARGE
+					TINY = 90,
+					SMALL = 300,
+					LARGE = -1
 }					t_zone_type;
 
 typedef struct		s_zone
@@ -76,9 +74,8 @@ void			show_alloc_mem(void);
 void			*smmap(size_t len);
 int				optim_nb_block(size_t len);
 t_mem			*get_mem(void);
-t_zone			**get_zones(size_t size);
+t_zone			**get_zones(t_zone_type type);
 int				zone_size_by_size(size_t size);
-int				zone_size_by_type(t_zone_type type);
 t_zone_type		zone_type(size_t size);
 size_t			calculate(size_t nb, size_t size);
 #endif

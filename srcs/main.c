@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/20 16:36:51 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/21 10:19:26 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int		main(int argc, char **argv)
 	}
 	show_alloc_mem();
 	free(ptr);
-	show_alloc_mem();
 	return 0;
 }

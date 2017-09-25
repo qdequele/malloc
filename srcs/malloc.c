@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/20 15:46:05 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/21 13:41:44 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_all_blocks(t_zone **zone)
 	while (i < begin->nb_max_blocks)
 	{
 		VAL(ptr) = 0;
-		ptr += T_BLOCK_SIZE + zone_size_by_type((*zone)->type);
+		ptr += T_BLOCK_SIZE + (*zone)->type;
 		i++;
 	}
 }
@@ -89,8 +89,8 @@ void	*malloc(size_t size)
 	i = 0;
 	while (VAL(ptr) != 0 && i < zone->nb_max_blocks)
 	{
-		ptr += T_BLOCK_SIZE + zone_size_by_type(zone->type);
-		i++;
+		ptr += T_BLOCK_SIZE + zone->type;
+	i++;
 	}
 	VAL(ptr) = size;
 	zone->nb_blocks++;

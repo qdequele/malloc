@@ -9,4 +9,4 @@ projet.log
 .DS_Store
 srcs/.DS_Store
 a.out
-
+*.dSYM
