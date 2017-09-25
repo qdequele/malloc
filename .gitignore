@@ -8,4 +8,5 @@ projet.log
 42sh
 .DS_Store
 srcs/.DS_Store
-exec
+a.out
+
