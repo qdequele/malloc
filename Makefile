@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/09/21 14:02:10 by qdequele         ###   ########.fr        #
+#    Updated: 2017/09/26 10:30:43 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ EXEC		=	a.out
 _SRC		=	free.c\
 				main.c\
 				malloc.c\
+				math.c\
 				realloc.c\
 				show.c\
 				tools.c

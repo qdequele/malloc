@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/21 13:44:06 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/26 10:20:39 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 
 typedef enum		e_zone_type
 {
-					TINY = 90,
-					SMALL = 300,
-					LARGE = -1
+	TINY = 90,
+	SMALL = 300,
+	LARGE = -1
 }					t_zone_type;
 
 typedef struct		s_zone
@@ -52,30 +52,39 @@ typedef struct		s_mem
 	t_zone			*large;
 }					t_mem;
 
-// MAIN
+/*
+** MAIN
+*/
 
-void			free(void *ptr);
-void			*realloc(void *ptr, size_t size);
+void				free(void *ptr);
+void				*realloc(void *ptr, size_t size);
 
-// MALLOC.C
+/*
+** MALLOC.C
+*/
 
-void			*malloc(size_t size);
-t_zone			*create_zone(size_t size);
-void			zone_addend(t_zone **alst, t_zone *new);
-t_zone			*add_zone(size_t size);
-void			init_all_blocks(t_zone **zone);
+void				*malloc(size_t size);
+t_zone				*create_zone(size_t size);
+void				zone_addend(t_zone **alst, t_zone *new);
+t_zone				*add_zone(size_t size);
+void				init_all_blocks(t_zone **zone);
 
-// SHOW.C
+/*
+** SHOW.C
+*/
 
-void			show_alloc_mem(void);
+void				show_alloc_mem(void);
 
-// TOOLS.C
+/*
+** TOOLS.C
+*/
 
-void			*smmap(size_t len);
-int				optim_nb_block(size_t len);
-t_mem			*get_mem(void);
-t_zone			**get_zones(t_zone_type type);
-int				zone_size_by_size(size_t size);
-t_zone_type		zone_type(size_t size);
-size_t			calculate(size_t nb, size_t size);
+void				*smmap(size_t len);
+int					optim_nb_block(size_t len);
+t_mem				*get_mem(void);
+t_zone				**get_zones(t_zone_type type);
+int					zone_size_by_size(size_t size);
+t_zone_type			zone_type(size_t size);
+size_t				calculate(size_t nb, size_t size);
+
 #endif

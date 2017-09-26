@@ -6,15 +6,14 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/21 13:41:44 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/26 10:26:25 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void	init_all_blocks(t_zone **zone)
+void		init_all_blocks(t_zone **zone)
 {
-	
 	t_zone	*begin;
 	void	*ptr;
 	size_t	i;
@@ -44,10 +43,10 @@ t_zone		*create_zone(size_t size)
 	zone->nb_max_blocks = nb_blocks;
 	zone->zone_length = zone_length;
 	zone->next = NULL;
-	return zone;
+	return (zone);
 }
 
-void	zone_addend(t_zone **alst, t_zone *new)
+void		zone_addend(t_zone **alst, t_zone *new)
 {
 	t_zone	*list;
 
@@ -69,10 +68,10 @@ t_zone		*add_zone(size_t size)
 	new = create_zone(size);
 	init_all_blocks(&new);
 	zone_addend(get_zones(size), new);
-	return new;
+	return (new);
 }
 
-void	*malloc(size_t size)
+void		*malloc(size_t size)
 {
 	t_zone	*zone;
 	void	*ptr;
@@ -90,9 +89,9 @@ void	*malloc(size_t size)
 	while (VAL(ptr) != 0 && i < zone->nb_max_blocks)
 	{
 		ptr += T_BLOCK_SIZE + zone->type;
-	i++;
+		i++;
 	}
 	VAL(ptr) = size;
 	zone->nb_blocks++;
-	return ptr + T_BLOCK_SIZE;
+	return (ptr + T_BLOCK_SIZE);
 }

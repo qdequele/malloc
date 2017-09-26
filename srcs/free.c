@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/21 13:43:33 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/26 10:08:34 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,18 @@ int		check_free_zone(t_zone **zone, void *ptr)
 			z->nb_blocks--;
 			// if (nb_blocks == 0)
 				// Del liste maillon
-			return 1;
+			return (1);
 		}
 		z = z->next;
 	}
-	return 0;
+	return (0);
 }
 
-void			free(void *ptr)
+void	free(void *ptr)
 {
 	if (ptr == NULL)
 		return ;
-
 	if (!check_free_zone(get_zones(TINY), ptr))
-		if(!check_free_zone(get_zones(SMALL), ptr))
+		if (!check_free_zone(get_zones(SMALL), ptr))
 			check_free_zone(get_zones(SMALL + 10), ptr);
 }
