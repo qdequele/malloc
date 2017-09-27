@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/26 10:08:34 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 11:22:29 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ int		check_free_zone(t_zone **zone, void *ptr)
 		if (ptr > (void *)z && ptr < (void *)z + z->zone_length)
 		{
 			ptr -= T_BLOCK_SIZE;
-			VAL(ptr) = 0;
-			z->nb_blocks--;
-			// if (nb_blocks == 0)
-				// Del liste maillon
+			free_block(zone, ptr);
 			return (1);
 		}
 		z = z->next;

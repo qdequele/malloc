@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/26 10:20:17 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 11:31:17 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,30 @@ t_zone		**get_zones(t_zone_type type)
 		return (&mem->small);
 	else
 		return (&mem->large);
+}
+
+void	free_block(t_zone **zone, void *ptr)
+{
+	t_zone	*z;
+	t_zone	*begin;
+	t_zone	*prev;
+
+	z = *zone;
+	VAL(ptr) = 0;
+	z->nb_blocks--;
+	if (z->nb_blocks == 0)
+	{
+		begin = *get_zones(z->type);
+		prev = begin;
+		while (begin->next)
+		{
+			if (begin->nb_blocks == 0)
+			{
+				munmap(z, z->zone_length);
+				prev->next = begin->next;
+			}
+			prev = begin;
+			begin = begin->next;
+		}
+	}
 }

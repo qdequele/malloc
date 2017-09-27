@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/26 10:20:39 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 11:22:48 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ t_zone				**get_zones(t_zone_type type);
 int					zone_size_by_size(size_t size);
 t_zone_type			zone_type(size_t size);
 size_t				calculate(size_t nb, size_t size);
-
+void				free_block(t_zone **z, void *ptr);
 #endif
