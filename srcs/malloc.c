@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/26 10:26:25 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:23:13 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		*malloc(size_t size)
 	void	*ptr;
 	size_t	i;
 
+	write(1, "HELLO\n", 6);
 	if (size == 0)
 		return (NULL);
 	zone = *get_zones(size);

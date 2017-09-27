@@ -22,6 +22,7 @@ def page_reclaims(prog):
     pipe = cmd.Popen(com.split(), stdout=cmd.PIPE, stderr=cmd.PIPE)
     output, errput = pipe.communicate()
     m = re.search('([0-9]+?)[ \t]+page[ \t]+reclaims', errput)
+    print(errput)
     if m:
         found = m.group(1)
         return int(found)
@@ -104,7 +105,7 @@ cmp_output("test4", "Bonjours\n")
 # For this test to work, you need to have the libmalloc_darwin...
 # in the current directory.
 print("#####Test print_alloc_mem")
-com = "gcc -o " + bin_folder + "test5" + " " + "test5.c" + "  -L. -lft_malloc -I " + lib_inc
+com = "gcc -o " + bin_folder + "test5" + " " + "test5.c" + " -I " + lib_inc
 cmd.call(com.split())
 com = "./" + bin_folder + "test5"
 output = cmd_output(com.split())
