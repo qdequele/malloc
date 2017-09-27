@@ -1,11 +1,75 @@
-# include "../includes/malloc.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
+/*   Updated: 2017/09/27 16:39:34 by qdequele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/malloc.h"
+
+int	test_malloc(void)
+{
+	int		err;
+	char	*str;
+	int		i;
+	
+	err = 0;
+	i = 1;
+	while (i < 302)
+	{
+		str = (char*)malloc(i);
+		str[0] = 42;
+		i += 2;
+	}
+	// show_alloc_mem();
+	printf("\t 1) ok\n");
+	return err;
+}
+
+int	test_free(void)
+{
+	int		err;
+	char	*str;
+	int		i;
+	
+	err = 0;
+	i = 1;
+	while (i < 512)
+	{
+		str = (char*)malloc(i);
+		printf("num : %d\n", i);
+		str[0] = 42;
+		free(str);
+		i++;
+	}
+	printf("\t 1) ok\n");
+	return err;
+}
+
+int	test_realloc(void)
+{
+	int err;
+
+	err = 0;
+	printf("\t 1) ok\n");
+	return err;
+}
 
 int main(void)
 {
-	char *str;
+	int err;
 
-	str = malloc(1024 * 1000);
-	realloc(str, sizeof(char *) * 313);
-	show_alloc_mem();
-	return 0;
+	err = 0;
+	printf("-- Test - Malloc\n");
+	err += test_malloc();
+	printf("-- Test - Free\n");
+	err += test_free();
+	printf("-- Test - Realloc\n");
+	err += test_realloc();
+	return err;
 }

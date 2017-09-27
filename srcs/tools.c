@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 13:48:33 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 16:36:04 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		free_block(t_zone **zone, void *ptr)
 	t_zone	*begin;
 	t_zone	*prev;
 
+	printf("FREE BLOCKS\n");
 	z = *zone;
 	VAL(ptr) = 0;
 	z->nb_blocks--;
@@ -73,6 +74,7 @@ void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
 	size_t	count;
 	size_t	i;
 
+	printf("COPY BLOCKS\n");
 	count = (old_size <= new_size) ? old_size : new_size;
 	i = 0;
 	while (++i <= count)

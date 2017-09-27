@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 13:47:35 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 16:16:50 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define PROT PROT_READ | PROT_WRITE
 # define MAP MAP_ANON | MAP_PRIVATE
 
-# define DEBUG 1
+# define DEBUG 0
 
 # define T_BLOCK_SIZE sizeof(size_t)
 # define T_ZONE_SIZE sizeof(t_zone)

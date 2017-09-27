@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 13:23:13 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 16:16:05 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_zone		*add_zone(size_t size)
 
 	new = create_zone(size);
 	init_all_blocks(&new);
-	zone_addend(get_zones(size), new);
+	zone_addend(get_zones(zone_type(size)), new);
 	return (new);
 }
 
@@ -77,10 +77,9 @@ void		*malloc(size_t size)
 	void	*ptr;
 	size_t	i;
 
-	write(1, "HELLO\n", 6);
 	if (size == 0)
 		return (NULL);
-	zone = *get_zones(size);
+	zone = *get_zones(zone_type(size));
 	while (zone && zone->next && zone->nb_blocks == zone->nb_max_blocks)
 		zone = zone->next;
 	if (!zone || zone->nb_blocks == zone->nb_max_blocks)

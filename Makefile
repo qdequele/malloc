@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/09/27 13:24:05 by qdequele         ###   ########.fr        #
+#    Updated: 2017/09/27 14:52:33 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,21 @@ _SRC		=	free.c\
 				show.c\
 				tools.c
 
+_TEST		=	main.c
+
 _INC		=	malloc.h
 
 INC			=	$(addprefix includes/,$(_INC))
 SRC			=	$(addprefix srcs/,$(_SRC))
+TEST		=	$(addprefix test/,$(_TEST))
 OBJ			=	$(SRC:.c=.so)
-CFLAGS		=	-Wall -Wextra -Werror -shared
+CFLAGS		=	-Wall -Wextra -Werror
 INCLUDES	=	-I ./includes/
 
 all: $(NAME) $(INC)
 
 $(NAME):
-	@gcc $(CFLAGS) $(SRC) $(INCLUDES) -o $(NAME)
+	@gcc $(CFLAGS) $(SRC) $(INCLUDES) -shared -o $(NAME)
 	@ln -sF $(NAME) libft_malloc.so
 	@echo $(NAME) " - compiled"
 
@@ -48,3 +51,8 @@ fclean: clean
 	@echo $(NAME) " - Clean executable"
 
 re: fclean all
+
+check:
+	@gcc $(CFLAGS) $(SRC) $(TEST) $(INCLUDES)
+	@echo $(NAME) and test exec" - compiled and ready to test"
+	@./a.out
