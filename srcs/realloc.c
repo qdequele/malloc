@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 11:21:48 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:47:07 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 {
 	t_zone	*z;
+	void	*new_ptr;
 
 	z = *zone;
 	while (z)
@@ -24,6 +25,8 @@ void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 			ptr -= T_BLOCK_SIZE;
 			if (zone_type(VAL(ptr)) - zone_type(size) != 0)
 			{
+				ptr = malloc(size);
+				copy_blocks(new_ptr, size, ptr, VAL(ptr));
 				free_block(zone, ptr);
 				return (NULL);
 			}

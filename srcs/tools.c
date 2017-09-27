@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 11:31:17 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:48:33 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_zone		**get_zones(t_zone_type type)
 		return (&mem->large);
 }
 
-void	free_block(t_zone **zone, void *ptr)
+void		free_block(t_zone **zone, void *ptr)
 {
 	t_zone	*z;
 	t_zone	*begin;
@@ -65,5 +65,20 @@ void	free_block(t_zone **zone, void *ptr)
 			prev = begin;
 			begin = begin->next;
 		}
+	}
+}
+
+void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
+{
+	size_t	count;
+	size_t	i;
+
+	count = (old_size <= new_size) ? old_size : new_size;
+	i = 0;
+	while (++i <= count)
+	{
+		new++;
+		old++;
+		VAL(new) = VAL(old);
 	}
 }

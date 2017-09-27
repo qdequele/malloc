@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 11:40:47 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/27 13:47:35 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,6 @@ int					zone_size_by_size(size_t size);
 t_zone_type			zone_type(size_t size);
 size_t				calculate(size_t nb, size_t size);
 void				free_block(t_zone **z, void *ptr);
+void				copy_blocks(void *old,
+						size_t old_size, void *new, size_t new_size);
 #endif
