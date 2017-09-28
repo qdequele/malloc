@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/09/27 14:52:33 by qdequele         ###   ########.fr        #
+#    Updated: 2017/09/28 15:48:07 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ fclean: clean
 
 re: fclean all
 
-check:
+check: fclean
 	@gcc $(CFLAGS) $(SRC) $(TEST) $(INCLUDES)
 	@echo $(NAME) and test exec" - compiled and ready to test"
-	@./a.out
+	@./a.out > test.txt ; open test.txt &

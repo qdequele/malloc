@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 14:51:41 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:45:07 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,10 @@ void		free_block(t_zone **zone, void *ptr)
 	t_zone	*z;
 
 	z = *zone;
-	(void)ptr;
+	VAL(ptr) = 0;
 	z->nb_blocks--;
-	ft_lstdel_at(get_zones());
+	if (z->nb_blocks <= 0)
+		ft_lstdel_at(get_zones());
 }
 
 void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)

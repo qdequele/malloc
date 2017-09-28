@@ -6,20 +6,20 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 14:34:06 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:33:08 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void	print_type(t_zone_type type)
+char	*print_type(t_zone_type type)
 {
 	if (type == TINY)
-		write(1, "TINY ", 5);
+		return ("TINY ");
 	else if (type == SMALL)
-		write(1, "SMALL ", 6);
+		return ("SMALL ");
 	else
-		write(1, "LARGE ", 6);
+		return ("LARGE ");
 }
 
 int		show_debug_zone(t_zone **zone)
@@ -36,8 +36,8 @@ int		show_debug_zone(t_zone **zone)
 	while (z)
 	{
 		i = -1;
-		print_type(z->type);
-		printf(": %p | %zu/%zu blocks\n", z, z->nb_blocks, 
+		;
+		printf("%s : %p | %zu/%zu blocks\n",print_type(z->type) , z, z->nb_blocks, 
 			z->nb_max_blocks);
 		ptr = (void *)z + T_ZONE_SIZE;
 		while (++i < z->nb_max_blocks)
@@ -67,8 +67,7 @@ int		show_alloc_zone(t_zone **zone)
 	while (z)
 	{
 		i = -1;
-		print_type(z->type);
-		printf(": %p \n", z);
+		printf("%s : %p \n", print_type(z->type), z);
 		ptr = (void *)z + T_ZONE_SIZE;
 		while (++i < z->nb_max_blocks)
 		{

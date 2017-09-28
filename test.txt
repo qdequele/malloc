@@ -1,0 +1,27 @@
+-- Test - Malloc
+-- Test - Free
+SMALL  : 0x10ba90000 | 20/106 blocks
+n°0 : 0x10ba90030 - 0x10ba90152 : 290 octets
+n°1 : 0x10ba90164 - 0x10ba90287 : 291 octets
+n°2 : 0x10ba90298 - 0x10ba903bc : 292 octets
+n°3 : 0x10ba903cc - 0x10ba904f1 : 293 octets
+n°4 : 0x10ba90500 - 0x10ba90626 : 294 octets
+n°5 : 0x10ba90634 - 0x10ba9075b : 295 octets
+n°6 : 0x10ba90768 - 0x10ba90890 : 296 octets
+n°7 : 0x10ba9089c - 0x10ba909c5 : 297 octets
+n°8 : 0x10ba909d0 - 0x10ba90afa : 298 octets
+n°9 : 0x10ba90b04 - 0x10ba90c2f : 299 octets
+n°10 : 0x10ba90c38 - 0x10ba90d64 : 300 octets
+n°11 : 0x10ba90d6c - 0x10ba90e99 : 301 octets
+n°12 : 0x10ba90ea0 - 0x10ba90fce : 302 octets
+n°13 : 0x10ba90fd4 - 0x10ba91103 : 303 octets
+n°14 : 0x10ba91108 - 0x10ba91238 : 304 octets
+n°15 : 0x10ba9123c - 0x10ba9136d : 305 octets
+n°16 : 0x10ba91370 - 0x10ba914a2 : 306 octets
+n°17 : 0x10ba914a4 - 0x10ba915d7 : 307 octets
+n°18 : 0x10ba915d8 - 0x10ba9170c : 308 octets
+n°19 : 0x10ba9170c - 0x10ba91841 : 309 octets
+Total 5990 octets
+	 1) ok
+-- Test - Realloc
+	 1) ok
