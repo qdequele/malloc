@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 16:38:23 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:50:44 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int		check_free_zone(t_zone **zone, void *ptr)
 
 void	free(void *ptr)
 {
-	printf("FREE\n");
 	if (ptr == NULL)
 		return ;
-	if (!check_free_zone(get_zones(TINY), ptr))
-		if (!check_free_zone(get_zones(SMALL), ptr))
-			check_free_zone(get_zones(SMALL + 10), ptr);
+	check_free_zone(get_zones(), ptr);
 }

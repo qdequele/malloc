@@ -6,11 +6,50 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 16:36:04 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:51:41 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
+
+int		ft_lstcount(t_zone *lst)
+{
+	int		i;
+	t_zone	*elem;
+
+	i = 0;
+	elem = lst;
+	if (elem)
+	{
+		while (elem)
+		{
+			i++;
+			elem = elem->next;
+		}
+	}
+	return (i);
+}
+
+void	ft_lstdel_at(t_zone **list)
+{
+	t_zone	*tmp;
+	t_zone	*prev;
+
+	if (!list || !(*list))
+		return ;
+	tmp = *list;
+	prev = NULL;
+	while (tmp->nb_blocks != 0 && tmp->next != NULL)
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if (prev)
+		prev->next = tmp->next;
+	else
+		*list = tmp->next;
+	munmap(tmp, tmp->zone_length);
+}
 
 void		*smmap(size_t len)
 {
@@ -22,51 +61,21 @@ void		*smmap(size_t len)
 	return (mmap(NULL, f_len, PROT, MAP, -1, 0));
 }
 
-t_mem		*get_mem(void)
+t_zone		**get_zones(void)
 {
-	static t_mem	mem;
+	static t_zone	*zone;
 
-	return (&mem);
-}
-
-t_zone		**get_zones(t_zone_type type)
-{
-	t_mem	*mem;
-
-	mem = get_mem();
-	if (type == TINY)
-		return (&mem->tiny);
-	else if (type == SMALL)
-		return (&mem->small);
-	else
-		return (&mem->large);
+	return (&zone);
 }
 
 void		free_block(t_zone **zone, void *ptr)
 {
 	t_zone	*z;
-	t_zone	*begin;
-	t_zone	*prev;
 
-	printf("FREE BLOCKS\n");
 	z = *zone;
-	VAL(ptr) = 0;
+	(void)ptr;
 	z->nb_blocks--;
-	if (z->nb_blocks == 0)
-	{
-		begin = *get_zones(z->type);
-		prev = begin;
-		while (begin->next)
-		{
-			if (begin->nb_blocks == 0)
-			{
-				munmap(z, z->zone_length);
-				prev->next = begin->next;
-			}
-			prev = begin;
-			begin = begin->next;
-		}
-	}
+	ft_lstdel_at(get_zones());
 }
 
 void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
@@ -74,7 +83,6 @@ void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
 	size_t	count;
 	size_t	i;
 
-	printf("COPY BLOCKS\n");
 	count = (old_size <= new_size) ? old_size : new_size;
 	i = 0;
 	while (++i <= count)

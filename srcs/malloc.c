@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 16:16:05 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:51:15 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_zone		*create_zone(size_t size)
 	return (zone);
 }
 
-void		zone_addend(t_zone **alst, t_zone *new)
+void		zone_insert(t_zone **alst, t_zone *new)
 {
 	t_zone	*list;
 
@@ -67,31 +67,31 @@ t_zone		*add_zone(size_t size)
 
 	new = create_zone(size);
 	init_all_blocks(&new);
-	zone_addend(get_zones(zone_type(size)), new);
+	zone_insert(get_zones(), new);
 	return (new);
 }
 
 void		*malloc(size_t size)
 {
-	t_zone	*zone;
+	t_zone	*z;
 	void	*ptr;
 	size_t	i;
 
 	if (size == 0)
 		return (NULL);
-	zone = *get_zones(zone_type(size));
-	while (zone && zone->next && zone->nb_blocks == zone->nb_max_blocks)
-		zone = zone->next;
-	if (!zone || zone->nb_blocks == zone->nb_max_blocks)
-		zone = add_zone(size);
-	ptr = (void *)zone + T_ZONE_SIZE;
+	z = *get_zones();
+	while (z && z->next && (z->nb_blocks == z->nb_max_blocks || z->type != zone_type(size)))
+		z = z->next;
+	if (!z || z->nb_blocks == z->nb_max_blocks)
+		z = add_zone(size);
+	ptr = (void *)z + T_ZONE_SIZE;
 	i = 0;
-	while (VAL(ptr) != 0 && i < zone->nb_max_blocks)
+	while (VAL(ptr) != 0 && i < z->nb_max_blocks)
 	{
-		ptr += T_BLOCK_SIZE + zone->type;
+		ptr += T_BLOCK_SIZE + z->type;
 		i++;
 	}
 	VAL(ptr) = size;
-	zone->nb_blocks++;
+	z->nb_blocks++;
 	return (ptr + T_BLOCK_SIZE);
 }

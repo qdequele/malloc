@@ -6,13 +6,23 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/26 10:31:32 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:34:06 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int		show_debug_zone(t_zone **zone, char *type)
+void	print_type(t_zone_type type)
+{
+	if (type == TINY)
+		write(1, "TINY ", 5);
+	else if (type == SMALL)
+		write(1, "SMALL ", 6);
+	else
+		write(1, "LARGE ", 6);
+}
+
+int		show_debug_zone(t_zone **zone)
 {
 	size_t	sum;
 	size_t	i;
@@ -26,7 +36,9 @@ int		show_debug_zone(t_zone **zone, char *type)
 	while (z)
 	{
 		i = -1;
-		printf("%s : %p | %zu blocks\n", type, z, z->nb_max_blocks);
+		print_type(z->type);
+		printf(": %p | %zu/%zu blocks\n", z, z->nb_blocks, 
+			z->nb_max_blocks);
 		ptr = (void *)z + T_ZONE_SIZE;
 		while (++i < z->nb_max_blocks)
 		{
@@ -41,7 +53,7 @@ int		show_debug_zone(t_zone **zone, char *type)
 	return (sum);
 }
 
-int		show_alloc_zone(t_zone **zone, char *type)
+int		show_alloc_zone(t_zone **zone)
 {
 	size_t	sum;
 	size_t	i;
@@ -55,7 +67,8 @@ int		show_alloc_zone(t_zone **zone, char *type)
 	while (z)
 	{
 		i = -1;
-		printf("%s : %p \n", type, z);
+		print_type(z->type);
+		printf(": %p \n", z);
 		ptr = (void *)z + T_ZONE_SIZE;
 		while (++i < z->nb_max_blocks)
 		{
@@ -76,16 +89,8 @@ void	show_alloc_mem(void)
 
 	sum = 0;
 	if (DEBUG)
-	{
-		sum += show_debug_zone(get_zones(TINY), "TINY");
-		sum += show_debug_zone(get_zones(SMALL), "SMALL");
-		sum += show_debug_zone(get_zones(SMALL + 10), "LARGE");
-	}
+		sum += show_debug_zone(get_zones());
 	else
-	{
-		sum += show_alloc_zone(get_zones(TINY), "TINY");
-		sum += show_alloc_zone(get_zones(SMALL), "SMALL");
-		sum += show_alloc_zone(get_zones(SMALL + 10), "LARGE");
-	}
+		sum += show_alloc_zone(get_zones());
 	printf("Total %zu octets\n", sum);
 }

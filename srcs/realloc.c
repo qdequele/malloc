@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 14:48:41 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:29:08 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,7 @@ void	*realloc(void *ptr, size_t size)
 		free(ptr);
 		return (NULL);
 	}
-	if ((new_ptr = check_realloc_zone(get_zones(TINY), ptr, size))
-		== NULL)
-		if ((new_ptr = check_realloc_zone(get_zones(SMALL), ptr, size))
-			== NULL)
-			if ((new_ptr = check_realloc_zone(get_zones(SMALL + 10), ptr, size))
-				== NULL)
-				return (malloc(size));
+	if ((new_ptr = check_realloc_zone(get_zones(), ptr, size)) == NULL)
+		return (malloc(size));
 	return (new_ptr);
 }

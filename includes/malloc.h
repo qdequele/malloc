@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/27 16:16:50 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:23:35 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define PROT PROT_READ | PROT_WRITE
 # define MAP MAP_ANON | MAP_PRIVATE
 
-# define DEBUG 0
+# define DEBUG 1
 
 # define T_BLOCK_SIZE sizeof(size_t)
 # define T_ZONE_SIZE sizeof(t_zone)
@@ -82,8 +82,7 @@ void				show_alloc_mem(void);
 
 void				*smmap(size_t len);
 int					optim_nb_block(size_t len);
-t_mem				*get_mem(void);
-t_zone				**get_zones(t_zone_type type);
+t_zone				**get_zones(void);
 int					zone_size_by_size(size_t size);
 t_zone_type			zone_type(size_t size);
 size_t				calculate(size_t nb, size_t size);
