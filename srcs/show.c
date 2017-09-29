@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 15:33:08 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 10:48:32 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int		show_debug_zone(t_zone **zone)
 	while (z)
 	{
 		i = -1;
-		;
-		printf("%s : %p | %zu/%zu blocks\n",print_type(z->type) , z, z->nb_blocks, 
+		printf("%s : %p | %zu/%zu blocks\n", print_type(z->type), z, z->nb_blocks, 
 			z->nb_max_blocks);
 		ptr = (void *)z + T_ZONE_SIZE;
 		while (++i < z->nb_max_blocks)

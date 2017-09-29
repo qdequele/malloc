@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 14:51:15 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 11:22:19 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,21 @@ void		*malloc(size_t size)
 	if (size == 0)
 		return (NULL);
 	z = *get_zones();
-	while (z && z->next && (z->nb_blocks == z->nb_max_blocks || z->type != zone_type(size)))
+	while (z && z->next && (z->nb_blocks == z->nb_max_blocks 
+	|| z->type != zone_type(size)))
 		z = z->next;
-	if (!z || z->nb_blocks == z->nb_max_blocks)
+	if (!z || z->nb_blocks == z->nb_max_blocks || z->type != zone_type(size))
 		z = add_zone(size);
 	ptr = (void *)z + T_ZONE_SIZE;
 	i = 0;
-	while (VAL(ptr) != 0 && i < z->nb_max_blocks)
+	while (VAL(ptr) != 0 && i < z->nb_max_blocks && z->type != LARGE)
 	{
 		ptr += T_BLOCK_SIZE + z->type;
 		i++;
 	}
 	VAL(ptr) = size;
+	// printf("1 - %zu | placed in block %p complete at %zu/%zu\n", size, z, z->nb_blocks, z->nb_max_blocks);
 	z->nb_blocks++;
+	// printf("2 - %zu | placed in block %p complete at %zu/%zu\n", size, z, z->nb_blocks, z->nb_max_blocks);
 	return (ptr + T_BLOCK_SIZE);
 }

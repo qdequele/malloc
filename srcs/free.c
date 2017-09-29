@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 14:50:44 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 11:21:43 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		check_free_zone(t_zone **zone, void *ptr)
 		if (ptr > (void *)z && ptr < (void *)z + z->zone_length)
 		{
 			ptr -= T_BLOCK_SIZE;
-			free_block(zone, ptr);
+			free_block(&z, ptr);
 			return (1);
 		}
 		z = z->next;
