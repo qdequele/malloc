@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 11:22:19 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 14:31:21 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,23 @@ t_zone		*create_zone(size_t size)
 void		zone_insert(t_zone **alst, t_zone *new)
 {
 	t_zone	*list;
+	t_zone	*tmp;
 
 	list = *alst;
 	if (*alst == NULL && new)
 		*alst = new;
 	else
 	{
-		while (list->next)
+		while (list->next && (void *)list > (void *)new)
 			list = list->next;
-		list->next = new;
+		if ((void *)list > (void *)new)
+		{
+			tmp = list;
+			list = new;
+			list->next = tmp;
+		}
+		else
+			list->next = new;
 	}
 }
 
@@ -93,8 +101,6 @@ void		*malloc(size_t size)
 		i++;
 	}
 	VAL(ptr) = size;
-	// printf("1 - %zu | placed in block %p complete at %zu/%zu\n", size, z, z->nb_blocks, z->nb_max_blocks);
 	z->nb_blocks++;
-	// printf("2 - %zu | placed in block %p complete at %zu/%zu\n", size, z, z->nb_blocks, z->nb_max_blocks);
 	return (ptr + T_BLOCK_SIZE);
 }

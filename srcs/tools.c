@@ -6,29 +6,11 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 11:22:41 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 14:48:18 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
-
-int		ft_lstcount(t_zone *lst)
-{
-	int		i;
-	t_zone	*elem;
-
-	i = 0;
-	elem = lst;
-	if (elem)
-	{
-		while (elem)
-		{
-			i++;
-			elem = elem->next;
-		}
-	}
-	return (i);
-}
 
 void	ft_lstdel_at(t_zone **list)
 {
@@ -74,27 +56,9 @@ void		free_block(t_zone **zone, void *ptr)
 
 	z = *zone;
 	VAL(ptr) = 0;
-	// printf("1 - deleted in block %p complete at %zu/%zu\n", z, z->nb_blocks, z->nb_max_blocks);
 	z->nb_blocks--;
-	// printf("2 - deleted in block %p complete at %zu/%zu\n", z, z->nb_blocks, z->nb_max_blocks);
 	if (z->nb_blocks <= 0)
-	{
-		// printf("zone %p must be deleted\n", z);
 		ft_lstdel_at(get_zones());
-	}
 }
 
-void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
-{
-	size_t	count;
-	size_t	i;
 
-	count = (old_size <= new_size) ? old_size : new_size;
-	i = 0;
-	while (++i <= count)
-	{
-		new++;
-		old++;
-		VAL(new) = VAL(old);
-	}
-}

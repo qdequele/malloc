@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 10:42:44 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 14:50:04 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,14 @@ int	test_free(void)
 	i = 290;
 	while (i < 310)
 	{
-		// printf("-------NUMBER : %d\n", i);
+		printf()
 		str = (char*)malloc(i);
 		str[0] = 42;
-		// show_alloc_mem();
 		free(str);
-		// show_alloc_mem();
 		str = (char*)malloc(i);
 		str[0] = 42;
-		// show_allc_mem();
 		i++;
 	}
-	show_alloc_mem();
 	printf("\t 1) ok\n");
 	return err;
 }

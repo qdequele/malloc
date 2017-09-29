@@ -6,11 +6,26 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 14:29:08 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/09/29 13:18:53 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
+
+void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
+{
+	size_t	count;
+	size_t	i;
+
+	count = (old_size <= new_size) ? old_size : new_size;
+	i = 0;
+	while (++i <= count)
+	{
+		new++;
+		old++;
+		VAL(new) = VAL(old);
+	}
+}
 
 void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 {
