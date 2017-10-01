@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 14:31:21 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/01 14:15:46 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,70 @@ t_zone		*create_zone(size_t size)
 	return (zone);
 }
 
+int		ft_lstcount(t_zone *lst)
+{
+	int		i;
+	t_zone	*elem;
+
+	i = 0;
+	elem = lst;
+	if (elem)
+	{
+		while (elem)
+		{
+			i++;
+			elem = elem->next;
+		}
+	}
+	return (i);
+}
+
 void		zone_insert(t_zone **alst, t_zone *new)
 {
 	t_zone	*list;
-	t_zone	*tmp;
+	t_zone	*prev;
 
+	printf("-----zone_insert\n");
 	list = *alst;
 	if (*alst == NULL && new)
+	{
+		printf("zone_insert 1\n");
 		*alst = new;
+	}
 	else
 	{
-		while (list->next && (void *)list > (void *)new)
-			list = list->next;
-		if ((void *)list > (void *)new)
+		// printf("zone_insert 2\n");
+		// printf("list->next = %s\n", (list->next)? "true" : "false");
+		// printf("list = %d | new = %d\n", (int)list, (int)new);
+		// printf("(int)list >= (int)new = %s\n", ((int)list >= (int)new)? "true" : "false");
+		prev = NULL;
+		while (list->next && (int)list < (int)new)
 		{
-			tmp = list;
-			list = new;
-			list->next = tmp;
+			// printf("zone_insert 3\n");
+			prev = list;
+			list = list->next;
+		}
+		if ((int)list > (int)new)
+		{
+			// printf("zone_insert 4\n");
+			if (prev == NULL)
+			{
+				// printf("zone_insert 5\n");
+				*alst = new;
+			}
+			else
+			{
+				// printf("zone_insert 6\n");
+				prev->next = new;
+			}
+			new->next = list;
 		}
 		else
+		{
+			// printf("zone_insert 7\n");
+			// printf(" count = %d\n", ft_lstcount(*alst));
 			list->next = new;
+		}
 	}
 }
 
