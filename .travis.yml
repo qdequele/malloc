@@ -6,5 +6,4 @@ language: c
 compiler: clang
 
 script:
-  - cd libft; git pull; cd ../
   - make test
