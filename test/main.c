@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 16:12:34 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 16:59:49 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	test_realloc(void)
 	free(NULL);
 	free((void *)addr + 5);
 	test = realloc((void *)addr + 5, 10);
-	if (test == NULL)
+	if (test != NULL)
 	{
 		ft_putstr("\t 1) Err\n");
 		return (1);

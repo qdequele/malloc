@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 13:18:53 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 17:15:42 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,38 @@ void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 	{
 		if (ptr > (void *)z && ptr < (void *)z + z->zone_length)
 		{
+			if (((void *)z - ptr - T_ZONE_SIZE) % (T_BLOCK_SIZE + z->type) != 0)
+			{
+				ft_putstr("MODULO !!!\n");
+				return (NULL);
+			}
+				
 			ptr -= T_BLOCK_SIZE;
 			if (zone_type(VAL(ptr)) - zone_type(size) != 0)
 			{
 				new_ptr = malloc(size);
 				copy_blocks(new_ptr, size, ptr, VAL(ptr));
 				free_block(zone, ptr);
-				return (NULL);
+				return (new_ptr);
 			}
 			VAL(ptr) = size;
 			return (ptr += T_BLOCK_SIZE);
 		}
 		z = z->next;
 	}
-	return (NULL);
+	return (malloc(size));
 }
 
 void	*realloc(void *ptr, size_t size)
 {
-	void	*new_ptr;
-
-	if (ptr == NULL)
+	if (ptr == NULL && size != 0)
 		return (malloc(size));
+	if (ptr == NULL && size == 0)
+		return (NULL);
 	if (size == 0)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	if ((new_ptr = check_realloc_zone(get_zones(), ptr, size)) == NULL)
-		return (malloc(size));
-	return (new_ptr);
+	return (check_realloc_zone(get_zones(), ptr, size));
 }
