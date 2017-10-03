@@ -9,4 +9,5 @@ git:
   submodules: true
 
 script:
+  - make re
   - make test
