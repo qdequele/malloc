@@ -6,13 +6,14 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 10:40:56 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 14:29:13 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
 # include <sys/mman.h>
+# include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -21,7 +22,7 @@
 # define PROT PROT_READ | PROT_WRITE
 # define MAP MAP_ANON | MAP_PRIVATE
 
-# define DEBUG 1
+# define DEBUG 0
 
 # define T_BLOCK_SIZE sizeof(size_t)
 # define T_ZONE_SIZE sizeof(t_zone)

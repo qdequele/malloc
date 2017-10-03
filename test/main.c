@@ -6,16 +6,45 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 10:51:35 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 16:12:34 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
+#include "../libft/libft.h"
 
-int	test_malloc(void)
+int	g_ttx;
+
+int	test_malloc_1(void)
 {
 	char	*str;
 	int		i;
+	int		ttx;
+
+	str = (char*)malloc(42);
+	str = (char*)malloc(420);
+	str = (char*)malloc(4200);
+	ttx = show_alloc_mem_test();
+	if (ttx - g_ttx != 4662)
+	{
+		g_ttx = ttx;
+		ft_putstr("\t 1) Error\n");
+		return (1);
+	}
+	else
+	{
+		g_ttx = ttx;
+		ft_putstr("\t 1) OK\n");
+		return (0);
+	}
+	return (0);
+}
+
+int	test_malloc_2(void)
+{
+	char	*str;
+	int		i;
+	int		ttx;
 
 	i = 290;
 	while (i < 310)
@@ -24,8 +53,19 @@ int	test_malloc(void)
 		str[0] = 42;
 		i += 1;
 	}
-	if (show_alloc_mem_test() != 5990)
+	ttx = show_alloc_mem_test();
+	if (ttx - g_ttx != 5990)
+	{
+		g_ttx = ttx;
+		ft_putstr("\t 2) Error\n");
 		return (1);
+	}
+	else
+	{
+		g_ttx = ttx;
+		ft_putstr("\t 2) OK\n");
+		return (0);
+	}
 	return (0);
 }
 
@@ -33,6 +73,7 @@ int	test_free(void)
 {
 	char	*str;
 	int		i;
+	int		ttx;
 	
 	i = 290;
 	while (i < 310)
@@ -44,9 +85,22 @@ int	test_free(void)
 		str[0] = 42;
 		i++;
 	}
-	if (show_alloc_mem_test() != 5990 * 2)
+	ttx = show_alloc_mem_test();
+	
+	if (ttx - g_ttx  != 5990)
+	{
+		g_ttx = ttx;
+		ft_putstr("\t 1) Error\n");
 		return (1);
+	}
+	else
+	{
+		g_ttx = ttx;
+		ft_putstr("\t 1) OK\n");
+		return (0);
+	}
 	return (0);
+	
 }
 
 int	test_realloc(void)
@@ -60,10 +114,14 @@ int	test_realloc(void)
 	test = realloc((void *)addr + 5, 10);
 	if (test == NULL)
 	{
-		printf("Bonjours\n");
+		ft_putstr("\t 1) Err\n");
 		return (1);
 	}
-	return (0);
+	else
+	{
+		ft_putstr("\t 1) OK\n");
+		return (0);
+	}
 }
 
 int main(void)
@@ -71,11 +129,16 @@ int main(void)
 	int err;
 
 	err = 0;
-	printf("-- Test - Malloc\n");
-	err += test_malloc();
-	printf("-- Test - Free\n");
+	g_ttx = 0;
+	ft_putstr("-- Test - Malloc\n");
+	err += test_malloc_1();
+	err += test_malloc_2();
+	ft_putstr("-- Test - Free\n");
 	err += test_free();
-	printf("-- Test - Realloc\n");
+	ft_putstr("-- Test - Realloc\n");
 	err += test_realloc();
+	ft_putstr("err: ");
+	ft_putnbr(err);
+	ft_putchar('\n');
 	return err;
 }

@@ -1,134 +1,118 @@
 -- Test - Malloc
-malloc de 290
-malloc de 291
-malloc de 292
-malloc de 293
-malloc de 294
-malloc de 295
-malloc de 296
-malloc de 297
-malloc de 298
-malloc de 299
-malloc de 300
-malloc de 301
-malloc de 302
-malloc de 303
-malloc de 304
-malloc de 305
-malloc de 306
-malloc de 307
-malloc de 308
-malloc de 309
-SMALL  : 0x109885000 | 11/106 blocks
-n°0 : 0x109885030 - 0x109885152 : 290 octets
-n°1 : 0x109885164 - 0x109885287 : 291 octets
-n°2 : 0x109885298 - 0x1098853bc : 292 octets
-n°3 : 0x1098853cc - 0x1098854f1 : 293 octets
-n°4 : 0x109885500 - 0x109885626 : 294 octets
-n°5 : 0x109885634 - 0x10988575b : 295 octets
-n°6 : 0x109885768 - 0x109885890 : 296 octets
-n°7 : 0x10988589c - 0x1098859c5 : 297 octets
-n°8 : 0x1098859d0 - 0x109885afa : 298 octets
-n°9 : 0x109885b04 - 0x109885c2f : 299 octets
-n°10 : 0x109885c38 - 0x109885d64 : 300 octets
-LARGE  : 0x10988d000 | 1/1 blocks
-n°0 : 0x10988d030 - 0x10988d15d : 301 octets
-LARGE  : 0x10988e000 | 1/1 blocks
-n°0 : 0x10988e030 - 0x10988e15e : 302 octets
-LARGE  : 0x10988f000 | 1/1 blocks
-n°0 : 0x10988f030 - 0x10988f15f : 303 octets
-LARGE  : 0x109890000 | 1/1 blocks
-n°0 : 0x109890030 - 0x109890160 : 304 octets
-LARGE  : 0x109891000 | 1/1 blocks
-n°0 : 0x109891030 - 0x109891161 : 305 octets
-LARGE  : 0x109892000 | 1/1 blocks
-n°0 : 0x109892030 - 0x109892162 : 306 octets
-LARGE  : 0x109893000 | 1/1 blocks
-n°0 : 0x109893030 - 0x109893163 : 307 octets
-LARGE  : 0x109894000 | 1/1 blocks
-n°0 : 0x109894030 - 0x109894164 : 308 octets
-LARGE  : 0x109895000 | 1/1 blocks
-n°0 : 0x109895030 - 0x109895165 : 309 octets
-Total 5990 octets
+TINY  : 0x8941000 | 1/124 blocks
+0x8941030 - 0x894105a : 42 octets
+LARGE  : 0x8944000 | 1/1 blocks
+0x8944030 - 0x89441d4 : 420 octets
+LARGE  : 0x8945000 | 1/1 blocks
+0x8945030 - 0x8946098 : 4200 octets
+Total 4662 octets
+	 1) OK
+TINY  : 0x8941000 | 1/124 blocks
+0x8941030 - 0x894105a : 42 octets
+LARGE  : 0x8944000 | 1/1 blocks
+0x8944030 - 0x89441d4 : 420 octets
+LARGE  : 0x8945000 | 1/1 blocks
+0x8945030 - 0x8946098 : 4200 octets
+SMALL  : 0x8947000 | 11/106 blocks
+0x8947030 - 0x8947152 : 290 octets
+0x8947164 - 0x8947287 : 291 octets
+0x8947298 - 0x89473bc : 292 octets
+0x89473cc - 0x89474f1 : 293 octets
+0x8947500 - 0x8947626 : 294 octets
+0x8947634 - 0x894775b : 295 octets
+0x8947768 - 0x8947890 : 296 octets
+0x894789c - 0x89479c5 : 297 octets
+0x89479d0 - 0x8947afa : 298 octets
+0x8947b04 - 0x8947c2f : 299 octets
+0x8947c38 - 0x8947d64 : 300 octets
+LARGE  : 0x894f000 | 1/1 blocks
+0x894f030 - 0x894f15d : 301 octets
+LARGE  : 0x8950000 | 1/1 blocks
+0x8950030 - 0x895015e : 302 octets
+LARGE  : 0x8951000 | 1/1 blocks
+0x8951030 - 0x895115f : 303 octets
+LARGE  : 0x8952000 | 1/1 blocks
+0x8952030 - 0x8952160 : 304 octets
+LARGE  : 0x8953000 | 1/1 blocks
+0x8953030 - 0x8953161 : 305 octets
+LARGE  : 0x8954000 | 1/1 blocks
+0x8954030 - 0x8954162 : 306 octets
+LARGE  : 0x8955000 | 1/1 blocks
+0x8955030 - 0x8955163 : 307 octets
+LARGE  : 0x8956000 | 1/1 blocks
+0x8956030 - 0x8956164 : 308 octets
+LARGE  : 0x8957000 | 1/1 blocks
+0x8957030 - 0x8957165 : 309 octets
+Total 10652 octets
+	 2) OK
 -- Test - Free
-malloc de 290
-malloc de 291
-malloc de 292
-malloc de 293
-malloc de 294
-malloc de 295
-malloc de 296
-malloc de 297
-malloc de 298
-malloc de 299
-malloc de 300
-malloc de 301
-malloc de 302
-malloc de 303
-malloc de 304
-malloc de 305
-malloc de 306
-malloc de 307
-malloc de 308
-malloc de 309
-SMALL  : 0x109885000 | 22/106 blocks
-n°0 : 0x109885030 - 0x109885152 : 290 octets
-n°1 : 0x109885164 - 0x109885287 : 291 octets
-n°2 : 0x109885298 - 0x1098853bc : 292 octets
-n°3 : 0x1098853cc - 0x1098854f1 : 293 octets
-n°4 : 0x109885500 - 0x109885626 : 294 octets
-n°5 : 0x109885634 - 0x10988575b : 295 octets
-n°6 : 0x109885768 - 0x109885890 : 296 octets
-n°7 : 0x10988589c - 0x1098859c5 : 297 octets
-n°8 : 0x1098859d0 - 0x109885afa : 298 octets
-n°9 : 0x109885b04 - 0x109885c2f : 299 octets
-n°10 : 0x109885c38 - 0x109885d64 : 300 octets
-n°11 : 0x109885d6c - 0x109885e8e : 290 octets
-n°12 : 0x109885ea0 - 0x109885fc3 : 291 octets
-n°13 : 0x109885fd4 - 0x1098860f8 : 292 octets
-n°14 : 0x109886108 - 0x10988622d : 293 octets
-n°15 : 0x10988623c - 0x109886362 : 294 octets
-n°16 : 0x109886370 - 0x109886497 : 295 octets
-n°17 : 0x1098864a4 - 0x1098865cc : 296 octets
-n°18 : 0x1098865d8 - 0x109886701 : 297 octets
-n°19 : 0x10988670c - 0x109886836 : 298 octets
-n°20 : 0x109886840 - 0x10988696b : 299 octets
-n°21 : 0x109886974 - 0x109886aa0 : 300 octets
-LARGE  : 0x10988d000 | 1/1 blocks
-n°0 : 0x10988d030 - 0x10988d15d : 301 octets
-LARGE  : 0x10988e000 | 1/1 blocks
-n°0 : 0x10988e030 - 0x10988e15e : 302 octets
-LARGE  : 0x10988f000 | 1/1 blocks
-n°0 : 0x10988f030 - 0x10988f15f : 303 octets
-LARGE  : 0x109890000 | 1/1 blocks
-n°0 : 0x109890030 - 0x109890160 : 304 octets
-LARGE  : 0x109891000 | 1/1 blocks
-n°0 : 0x109891030 - 0x109891161 : 305 octets
-LARGE  : 0x109892000 | 1/1 blocks
-n°0 : 0x109892030 - 0x109892162 : 306 octets
-LARGE  : 0x109893000 | 1/1 blocks
-n°0 : 0x109893030 - 0x109893163 : 307 octets
-LARGE  : 0x109894000 | 1/1 blocks
-n°0 : 0x109894030 - 0x109894164 : 308 octets
-LARGE  : 0x109895000 | 1/1 blocks
-n°0 : 0x109895030 - 0x109895165 : 309 octets
-LARGE  : 0x109896000 | 1/1 blocks
-n°0 : 0x109896030 - 0x10989615d : 301 octets
-LARGE  : 0x109897000 | 1/1 blocks
-n°0 : 0x109897030 - 0x10989715e : 302 octets
-LARGE  : 0x109898000 | 1/1 blocks
-n°0 : 0x109898030 - 0x10989815f : 303 octets
-LARGE  : 0x109899000 | 1/1 blocks
-n°0 : 0x109899030 - 0x109899160 : 304 octets
-LARGE  : 0x10989a000 | 1/1 blocks
-n°0 : 0x10989a030 - 0x10989a161 : 305 octets
-LARGE  : 0x10989b000 | 1/1 blocks
-n°0 : 0x10989b030 - 0x10989b162 : 306 octets
-LARGE  : 0x10989c000 | 1/1 blocks
-n°0 : 0x10989c030 - 0x10989c163 : 307 octets
-LARGE  : 0x10989d000 | 1/1 blocks
-n°0 : 0x10989d030 - 0x10989d164 : 308 octets
-LARGE  : 0x10989e000 | 1/1 blocks
-n°0 : 0x10989e030 - 0x10989e165 : 309 octets
-Total 11980 octets
+TINY  : 0x8941000 | 1/124 blocks
+0x8941030 - 0x894105a : 42 octets
+LARGE  : 0x8944000 | 1/1 blocks
+0x8944030 - 0x89441d4 : 420 octets
+LARGE  : 0x8945000 | 1/1 blocks
+0x8945030 - 0x8946098 : 4200 octets
+SMALL  : 0x8947000 | 22/106 blocks
+0x8947030 - 0x8947152 : 290 octets
+0x8947164 - 0x8947287 : 291 octets
+0x8947298 - 0x89473bc : 292 octets
+0x89473cc - 0x89474f1 : 293 octets
+0x8947500 - 0x8947626 : 294 octets
+0x8947634 - 0x894775b : 295 octets
+0x8947768 - 0x8947890 : 296 octets
+0x894789c - 0x89479c5 : 297 octets
+0x89479d0 - 0x8947afa : 298 octets
+0x8947b04 - 0x8947c2f : 299 octets
+0x8947c38 - 0x8947d64 : 300 octets
+0x8947d6c - 0x8947e8e : 290 octets
+0x8947ea0 - 0x8947fc3 : 291 octets
+0x8947fd4 - 0x89480f8 : 292 octets
+0x8948108 - 0x894822d : 293 octets
+0x894823c - 0x8948362 : 294 octets
+0x8948370 - 0x8948497 : 295 octets
+0x89484a4 - 0x89485cc : 296 octets
+0x89485d8 - 0x8948701 : 297 octets
+0x894870c - 0x8948836 : 298 octets
+0x8948840 - 0x894896b : 299 octets
+0x8948974 - 0x8948aa0 : 300 octets
+LARGE  : 0x894f000 | 1/1 blocks
+0x894f030 - 0x894f15d : 301 octets
+LARGE  : 0x8950000 | 1/1 blocks
+0x8950030 - 0x895015e : 302 octets
+LARGE  : 0x8951000 | 1/1 blocks
+0x8951030 - 0x895115f : 303 octets
+LARGE  : 0x8952000 | 1/1 blocks
+0x8952030 - 0x8952160 : 304 octets
+LARGE  : 0x8953000 | 1/1 blocks
+0x8953030 - 0x8953161 : 305 octets
+LARGE  : 0x8954000 | 1/1 blocks
+0x8954030 - 0x8954162 : 306 octets
+LARGE  : 0x8955000 | 1/1 blocks
+0x8955030 - 0x8955163 : 307 octets
+LARGE  : 0x8956000 | 1/1 blocks
+0x8956030 - 0x8956164 : 308 octets
+LARGE  : 0x8957000 | 1/1 blocks
+0x8957030 - 0x8957165 : 309 octets
+LARGE  : 0x8958000 | 1/1 blocks
+0x8958030 - 0x895815d : 301 octets
+LARGE  : 0x8959000 | 1/1 blocks
+0x8959030 - 0x895915e : 302 octets
+LARGE  : 0x895a000 | 1/1 blocks
+0x895a030 - 0x895a15f : 303 octets
+LARGE  : 0x895b000 | 1/1 blocks
+0x895b030 - 0x895b160 : 304 octets
+LARGE  : 0x895c000 | 1/1 blocks
+0x895c030 - 0x895c161 : 305 octets
+LARGE  : 0x895d000 | 1/1 blocks
+0x895d030 - 0x895d162 : 306 octets
+LARGE  : 0x895e000 | 1/1 blocks
+0x895e030 - 0x895e163 : 307 octets
+LARGE  : 0x895f000 | 1/1 blocks
+0x895f030 - 0x895f164 : 308 octets
+LARGE  : 0x8960000 | 1/1 blocks
+0x8960030 - 0x8960165 : 309 octets
+Total 16642 octets
+	 1) OK
 -- Test - Realloc
+	 1) OK
+err: 0

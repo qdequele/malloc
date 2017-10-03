@@ -6,13 +6,13 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 14:48:18 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 13:47:11 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void	ft_lstdel_at(t_zone **list)
+void	del_zone(t_zone **list)
 {
 	t_zone	*tmp;
 	t_zone	*prev;
@@ -58,7 +58,7 @@ void		free_block(t_zone **zone, void *ptr)
 	VAL(ptr) = 0;
 	z->nb_blocks--;
 	if (z->nb_blocks <= 0)
-		ft_lstdel_at(get_zones());
+		del_zone(get_zones());
 }
 
 

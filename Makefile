@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/03 10:58:27 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/03 15:44:26 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,20 +32,24 @@ _INC		=	malloc.h
 INC			=	$(addprefix includes/,$(_INC))
 SRC			=	$(addprefix srcs/,$(_SRC))
 TEST		=	$(addprefix test/,$(_TEST))
-OBJ			=	$(SRC:.c=.so)
-CFLAGS		=	-Wall -Wextra -Werror -shared -fPIC -O3
+
+OBJ			=	$(SRC:.c=.o)
+
+CFLAGS		=	-Wall -Wextra -Werror -fPIC -O3
 INCLUDES	=	-I ./includes/
-LIB			=	./libft/libft.a -I ./libft/
+LIB			=	./libft/libft.a -I ./libft/ -Llibft -lft
 
 %.o: %.c
-	@echo .
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	@echo -n .
+	@$gcc $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 all: $(NAME) $(INC)
 
-$(NAME):
+lib: 
 	@make -C libft
-	@gcc $(CFLAGS) $(SRC) $(LIB) $(INCLUDES) -o $(NAME)
+
+$(NAME): lib $(OBJ)
+	@gcc $(CFLAGS) $(OBJ) $(LIB) -shared -o $(NAME)
 	@ln -sF $(NAME) $(LINKNAME)
 	@echo $(NAME) " - compiled"
 
@@ -61,8 +65,8 @@ fclean: clean
 
 re: fclean all
 
-test: re
-	@gcc $(CFLAGS) $(SRC) $(TEST) $(INCLUDES)
+test: $(NAME)
+	@gcc $(NAME) $(TEST)
 	@echo $(NAME) and test exec" - compiled and ready to test"
 	@./a.out > test/test.txt
 
