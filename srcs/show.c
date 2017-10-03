@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/29 10:48:32 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 10:40:31 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,17 @@ void	show_alloc_mem(void)
 	else
 		sum += show_alloc_zone(get_zones());
 	printf("Total %zu octets\n", sum);
+}
+
+int		show_alloc_mem_test(void)
+{
+	size_t		sum;
+
+	sum = 0;
+	if (DEBUG)
+		sum += show_debug_zone(get_zones());
+	else
+		sum += show_alloc_zone(get_zones());
+	printf("Total %zu octets\n", sum);
+	return (sum);
 }

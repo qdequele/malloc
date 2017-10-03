@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/09/28 15:32:19 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/03 10:40:56 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void				init_all_blocks(t_zone **zone);
 */
 
 void				show_alloc_mem(void);
-
+int					show_alloc_mem_test(void);
 /*
 ** TOOLS.C
 */
