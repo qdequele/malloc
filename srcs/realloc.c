@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 17:15:42 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/04 11:53:31 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
 {
 	size_t	count;
 	size_t	i;
-
+	
 	count = (old_size <= new_size) ? old_size : new_size;
 	i = 0;
-	while (++i <= count)
+	while (i < count)
 	{
+		*(char *)new = *(char *)old;
 		new++;
 		old++;
-		VAL(new) = VAL(old);
+		i++;
 	}
 }
 
@@ -37,18 +38,14 @@ void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 	{
 		if (ptr > (void *)z && ptr < (void *)z + z->zone_length)
 		{
-			if (((void *)z - ptr - T_ZONE_SIZE) % (T_BLOCK_SIZE + z->type) != 0)
-			{
-				ft_putstr("MODULO !!!\n");
+			if (((ptr - (void *)z - T_ZONE_SIZE - T_BLOCK_SIZE) % (T_BLOCK_SIZE + z->type))!= 0)
 				return (NULL);
-			}
-				
 			ptr -= T_BLOCK_SIZE;
 			if (zone_type(VAL(ptr)) - zone_type(size) != 0)
 			{
 				new_ptr = malloc(size);
-				copy_blocks(new_ptr, size, ptr, VAL(ptr));
-				free_block(zone, ptr);
+				copy_blocks(ptr + T_BLOCK_SIZE, VAL(ptr), new_ptr, size);
+				free_block(&z, ptr);
 				return (new_ptr);
 			}
 			VAL(ptr) = size;
