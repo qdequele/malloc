@@ -6,11 +6,10 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/04 13:23:18 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:22:32 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/malloc.h"
 #include "../libft/libft.h"
 
 #define M1 (1024 * 1024)
@@ -26,6 +25,17 @@ typedef struct		s_functions
 	t_func			f;
 }					t_functions;
 
+void	test_malloc_0(void)
+{
+	int		i;
+	char	*addr;
+
+	i = 0;
+	while (i < 1024)
+	{
+		i++;
+	}
+}
 
 void	test_malloc_1(void)
 {
@@ -42,12 +52,12 @@ void	test_malloc_2(void)
 	char	*str;
 	int		i;
 
-	i = 290;
-	while (i < 310)
+	i = 1;
+	while (i < 200)
 	{
 		str = malloc(i);
 		str[0] = 42;
-		i += 1;
+		i++;
 	}
 }
 
@@ -81,11 +91,11 @@ void	test_realloc_2(void)
 {
 	char	*str;
 
-	str = malloc(TINY - 10);
-	str = realloc(str, TINY + 10);
-	str = realloc(str, SMALL + 1000);
-	str = realloc(str, TINY - 10);
-	str = realloc(str, SMALL - 10);
+	str = malloc(1024);
+	str = realloc(str, 1024 * 3);
+	str = realloc(str, 1024 / 2);
+	str = realloc(str, 1024 * 10);
+	str = realloc(str, 1024 / 10);
 }
 
 void	test_realloc_3(void)
@@ -120,10 +130,25 @@ void	test_realloc_4(void)
 	str = realloc(str, 5);
 }
 
+void	test_speed_1(void)
+{
+	char	*str;
+	int		i;
+
+	i = 1;
+	while (i < 10000)
+	{
+		str = malloc(i);
+		str[0] = 42;
+		i += 1;
+	}
+}
+
 int	test(char *num, t_func f, int size)
 {
 	int		ttx;
 	f();
+
 	ttx = show_alloc_mem_test();
 	if (ttx - g_ttx != size)
 	{
@@ -146,20 +171,20 @@ int	test(char *num, t_func f, int size)
 	}
 }
 
-
-
 int	main(void)
 {
 	int err;
 	int i;
 	t_functions	f[] = {
+		{"1.0", 0, test_malloc_0},
 		{"1.1", 4662, test_malloc_1},
-		{"1.2", 5990, test_malloc_2},
+		{"1.2", 19900, test_malloc_2},
 		{"2.1", 5990, test_free_1},
 		{"3.1", 10, test_realloc_1},
-		{"3.2", SMALL - 10, test_realloc_2},
+		{"3.2", 102, test_realloc_2},
 		{"3.3", 15, test_realloc_3},
 		{"3.4", 5, test_realloc_4},
+		{"4.1", 49995000, test_speed_1},
 		{NULL, 0,  NULL}
 	};
 	i = 0;
@@ -168,6 +193,5 @@ int	main(void)
 		err += test(f[i].num, f[i].f, f[i].size);
 		i++;
 	}
-	
 	return err;
 }

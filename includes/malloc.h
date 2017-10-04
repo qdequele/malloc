@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 14:29:13 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:49:04 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 typedef enum		e_zone_type
 {
-	TINY = 90,
-	SMALL = 300,
+	TINY = 2048,
+	SMALL = 16384,
 	LARGE = -1
 }					t_zone_type;
 

@@ -6,18 +6,18 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 14:12:26 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 16:05:34 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:10:35 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void			ft_puthex(void *ptr)
+void				ft_puthex(void *ptr)
 {
 	char			str[50];
 	size_t			len;
 	long long int	n;
-	
+
 	ft_putstr("0x");
 	n = (long long int)ptr;
 	len = ft_nbrlen_base(n, 16);

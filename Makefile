@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/03 15:44:26 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/04 18:18:33 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ re: fclean all
 test: $(NAME)
 	@gcc $(NAME) $(TEST)
 	@echo $(NAME) and test exec" - compiled and ready to test"
-	@./a.out > test/test.txt
+	@sh run.sh
+	@./a.out
 
 .PHONY: all, clean, fclean, re

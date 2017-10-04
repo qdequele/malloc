@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/04 11:53:31 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:12:22 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
 {
 	size_t	count;
 	size_t	i;
-	
+
 	count = (old_size <= new_size) ? old_size : new_size;
 	i = 0;
 	while (i < count)
@@ -28,7 +28,7 @@ void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
 	}
 }
 
-void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
+void		*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 {
 	t_zone	*z;
 	void	*new_ptr;
@@ -38,7 +38,8 @@ void	*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 	{
 		if (ptr > (void *)z && ptr < (void *)z + z->zone_length)
 		{
-			if (((ptr - (void *)z - T_ZONE_SIZE - T_BLOCK_SIZE) % (T_BLOCK_SIZE + z->type))!= 0)
+			if (((ptr - (void *)z - T_ZONE_SIZE - T_BLOCK_SIZE) % 
+				(T_BLOCK_SIZE + z->type)) != 0)
 				return (NULL);
 			ptr -= T_BLOCK_SIZE;
 			if (zone_type(VAL(ptr)) - zone_type(size) != 0)
