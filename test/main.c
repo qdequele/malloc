@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/04 18:22:32 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:33:19 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ int	main(void)
 		{"3.2", 102, test_realloc_2},
 		{"3.3", 15, test_realloc_3},
 		{"3.4", 5, test_realloc_4},
-		{"4.1", 49995000, test_speed_1},
+		// {"4.1", 49995000, test_speed_1},
 		{NULL, 0,  NULL}
 	};
 	i = 0;
