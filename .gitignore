@@ -10,3 +10,5 @@ projet.log
 srcs/.DS_Store
 a.out
 *.dSYM
+libft_malloc_x86_64_Darwin
+libft_malloc.so
