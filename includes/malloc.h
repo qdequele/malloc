@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/04 19:07:49 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/05 12:59:53 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <string.h>
 
 # define PROT PROT_READ | PROT_WRITE
@@ -77,6 +76,7 @@ void				init_all_blocks(t_zone **zone);
 
 void				show_alloc_mem(void);
 int					show_alloc_mem_test(void);
+
 /*
 ** TOOLS.C
 */

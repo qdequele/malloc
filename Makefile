@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/05 10:48:44 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/05 11:26:54 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,25 +73,25 @@ test: $(NAME)
 
 correct: re
 	@echo "- Test 0"
-	@gcc test/test0.c &>-
+	@gcc test/test0.c 2>&-
 	@./run.sh /usr/bin/time -l ./a.out 2>&1 | grep "page reclaims"
 	@echo "- Test 1"
-	@gcc test/test1.c &>-
+	@gcc test/test1.c 2>&-
 	@./run.sh /usr/bin/time -l ./a.out 2>&1 | grep "page reclaims"
 	@echo "- Test 2"
-	@gcc test/test2.c &>-
+	@gcc test/test2.c 2>&-
 	@./run.sh /usr/bin/time -l ./a.out 2>&1 | grep "page reclaims"
 	@echo "- Test 3"
-	@gcc test/test3.c &>-
+	@gcc test/test3.c 2>&-
 	@./run.sh ./a.out
 	@echo "- Test 3.2"
-	@gcc test/test3.2.c &>-
+	@gcc test/test3.2.c 2>&-
 	@./run.sh ./a.out
 	@echo "- Test 4"
-	@gcc test/test4.c &>-
+	@gcc test/test4.c 2>&-
 	@./run.sh ./a.out
 	@echo "- Test 5"
-	@gcc test/test5.c &>-
+	@gcc test/test5.c libft_malloc.so 2>&-
 	@./run.sh ./a.out
 	@rm a.out
 
