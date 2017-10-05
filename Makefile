@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/04 19:02:14 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/05 10:48:44 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,5 +70,29 @@ test: $(NAME)
 	@echo $(NAME) and test exec" - compiled and ready to test"
 	@sh run.sh
 	@./a.out
+
+correct: re
+	@echo "- Test 0"
+	@gcc test/test0.c &>-
+	@./run.sh /usr/bin/time -l ./a.out 2>&1 | grep "page reclaims"
+	@echo "- Test 1"
+	@gcc test/test1.c &>-
+	@./run.sh /usr/bin/time -l ./a.out 2>&1 | grep "page reclaims"
+	@echo "- Test 2"
+	@gcc test/test2.c &>-
+	@./run.sh /usr/bin/time -l ./a.out 2>&1 | grep "page reclaims"
+	@echo "- Test 3"
+	@gcc test/test3.c &>-
+	@./run.sh ./a.out
+	@echo "- Test 3.2"
+	@gcc test/test3.2.c &>-
+	@./run.sh ./a.out
+	@echo "- Test 4"
+	@gcc test/test4.c &>-
+	@./run.sh ./a.out
+	@echo "- Test 5"
+	@gcc test/test5.c &>-
+	@./run.sh ./a.out
+	@rm a.out
 
 .PHONY: all, clean, fclean, re
