@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/05 11:26:54 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/06 10:40:13 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ _SRC		=	free.c\
 				math.c\
 				realloc.c\
 				show.c\
+				test.c\
 				tools.c
 
 _TEST		=	main.c

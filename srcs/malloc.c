@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 16:06:04 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/06 10:30:29 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		*malloc(size_t size)
 	if (size == 0)
 		return (NULL);
 	z = *get_zones();
-	while (z && z->next && (z->nb_blocks == z->nb_max_blocks 
+	while (z && z->next && (z->nb_blocks == z->nb_max_blocks
 	|| z->type != zone_type(size)))
 		z = z->next;
 	if (!z || z->nb_blocks == z->nb_max_blocks || z->type != zone_type(size))

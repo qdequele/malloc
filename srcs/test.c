@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test4.c                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/06 10:42:09 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/06 10:40:00 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+#include "../includes/malloc.h"
 
-void	print(char *s)
+int		show_alloc_zone_test(t_zone **zone)
 {
-	write(1, s, strlen(s));
+	size_t	sum;
+	size_t	i;
+	void	*ptr;
+	t_zone	*z;
+
+	sum = 0;
+	z = *zone;
+	if (z == NULL)
+		return (0);
+	while (z)
+	{
+		i = -1;
+		ptr = (void *)z + T_ZONE_SIZE;
+		while (++i < z->nb_max_blocks)
+		{
+			sum += VAL(ptr);
+			ptr += T_BLOCK_SIZE + z->type;
+		}
+		z = z->next;
+	}
+	return (sum);
 }
 
-int		main(void)
+int		show_alloc_mem_test(void)
 {
-	char *addr;
-
-	addr = malloc(16);
-	free(NULL);
-	free((void *)addr + 5);
-	if (realloc((void *)addr + 5, 10) == NULL)
-		print("Bonjours\n");
+	return (show_alloc_zone_test(get_zones()));
 }

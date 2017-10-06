@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/05 10:46:29 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/06 10:30:13 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,34 @@ void		copy_blocks(void *old, size_t old_size, void *new, size_t new_size)
 	}
 }
 
+void		*do_reallocation(t_zone **zone, void *ptr, size_t size)
+{
+	void	*new_ptr;
+	t_zone	*z;
+
+	z = *zone;
+	new_ptr = malloc(size);
+	copy_blocks(ptr + T_BLOCK_SIZE, VAL(ptr), new_ptr, size);
+	free_block(&z, ptr);
+	return (new_ptr);
+}
+
 void		*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 {
 	t_zone	*z;
-	void	*new_ptr;
 
 	z = *zone;
 	while (z)
 	{
 		if (ptr > (void *)z && ptr < (void *)z + z->zone_length)
 		{
-			if (((ptr - (void *)z - T_ZONE_SIZE - T_BLOCK_SIZE) % 
+			if (((ptr - (void *)z - T_ZONE_SIZE - T_BLOCK_SIZE) %
 				(T_BLOCK_SIZE + z->type)) != 0)
 				return (NULL);
 			ptr -= T_BLOCK_SIZE;
-			if (zone_type(VAL(ptr)) - zone_type(size) != 0 
+			if (zone_type(VAL(ptr)) - zone_type(size) != 0
 				|| zone_type(size) == LARGE)
-			{
-				new_ptr = malloc(size);
-				copy_blocks(ptr + T_BLOCK_SIZE, VAL(ptr), new_ptr, size);
-				free_block(&z, ptr);
-				return (new_ptr);
-			}
+				return (do_reallocation(&z, ptr, size));
 			VAL(ptr) = size;
 			return (ptr += T_BLOCK_SIZE);
 		}
@@ -58,7 +64,7 @@ void		*check_realloc_zone(t_zone **zone, void *ptr, size_t size)
 	return (malloc(size));
 }
 
-void	*realloc(void *ptr, size_t size)
+void		*realloc(void *ptr, size_t size)
 {
 	if (ptr == NULL && size != 0)
 		return (malloc(size));

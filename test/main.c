@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/04 18:33:19 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/06 10:43:05 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define M1 (1024 * 1024)
 
-int	g_ttx;
+int					g_ttx;
 
 typedef void		(*t_func)(void);
 
@@ -25,7 +25,7 @@ typedef struct		s_functions
 	t_func			f;
 }					t_functions;
 
-void	test_malloc_0(void)
+void				test_malloc_0(void)
 {
 	int		i;
 	char	*addr;
@@ -37,7 +37,7 @@ void	test_malloc_0(void)
 	}
 }
 
-void	test_malloc_1(void)
+void				test_malloc_1(void)
 {
 	char	*str;
 	int		i;
@@ -47,7 +47,7 @@ void	test_malloc_1(void)
 	str = malloc(4200);
 }
 
-void	test_malloc_2(void)
+void				test_malloc_2(void)
 {
 	char	*str;
 	int		i;
@@ -61,7 +61,7 @@ void	test_malloc_2(void)
 	}
 }
 
-void	test_free_1(void)
+void				test_free_1(void)
 {
 	char	*str;
 	int		i;
@@ -78,7 +78,7 @@ void	test_free_1(void)
 	}
 }
 
-void	test_realloc_1(void)
+void				test_realloc_1(void)
 {
 	char	*addr;
 	char	*test;
@@ -98,7 +98,7 @@ void	test_realloc_2(void)
 	str = realloc(str, 1024 / 10);
 }
 
-void	test_realloc_3(void)
+void				test_realloc_3(void)
 {
 	char	*str;
 	int		i;
@@ -114,7 +114,7 @@ void	test_realloc_3(void)
 	str = realloc(str, 15);
 }
 
-void	test_realloc_4(void)
+void				test_realloc_4(void)
 {
 	char	*str;
 	int		i;
@@ -130,7 +130,7 @@ void	test_realloc_4(void)
 	str = realloc(str, 5);
 }
 
-void	test_speed_1(void)
+void				test_speed_1(void)
 {
 	char	*str;
 	int		i;
@@ -144,7 +144,7 @@ void	test_speed_1(void)
 	}
 }
 
-int	test(char *num, t_func f, int size)
+int					test(char *num, t_func f, int size)
 {
 	int		ttx;
 	f();
@@ -171,7 +171,7 @@ int	test(char *num, t_func f, int size)
 	}
 }
 
-int	main(void)
+int					main(void)
 {
 	int err;
 	int i;
@@ -184,7 +184,6 @@ int	main(void)
 		{"3.2", 102, test_realloc_2},
 		{"3.3", 15, test_realloc_3},
 		{"3.4", 5, test_realloc_4},
-		// {"4.1", 49995000, test_speed_1},
 		{NULL, 0,  NULL}
 	};
 	i = 0;
