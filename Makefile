@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/06 10:40:13 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/16 15:56:25 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ ifeq ($(HOSTTYPE),)
 endif
 
 #Define the program
-NAME		=	libft_malloc_$(HOSTTYPE)
+NAME		=	libft_malloc_$(HOSTTYPE).so
 LINKNAME	=	libft_malloc.so
 EXEC		=	a.out
 _SRC		=	free.c\
@@ -61,7 +61,7 @@ clean:
 
 fclean: clean
 	@make fclean -C libft
-	@/bin/rm -rf $(NAME)
+	@/bin/rm -rf libft*.so
 	@echo $(NAME) " - Clean executable"
 
 re: fclean all
