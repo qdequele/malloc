@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/16 15:56:25 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/24 14:52:33 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ EXEC		=	a.out
 _SRC		=	free.c\
 				malloc.c\
 				math.c\
+				print.c\
+				printhex.c\
 				realloc.c\
 				show.c\
 				test.c\
@@ -38,7 +40,6 @@ OBJ			=	$(SRC:.c=.o)
 
 CFLAGS		=	-Wall -Wextra -Werror -fPIC -O3
 INCLUDES	=	-I ./includes/
-LIB			=	./libft/libft.a -I ./libft/ -Llibft -lft
 
 %.o: %.c
 	@echo -n .
@@ -46,22 +47,17 @@ LIB			=	./libft/libft.a -I ./libft/ -Llibft -lft
 
 all: $(NAME) $(INC)
 
-lib: 
-	@make -C libft
-
-$(NAME): lib $(OBJ)
-	@gcc $(CFLAGS) $(OBJ) $(LIB) -shared -o $(NAME)
+$(NAME): $(OBJ)
+	@gcc $(CFLAGS) $(OBJ) -shared -o $(NAME)
 	@ln -sF $(NAME) $(LINKNAME)
 	@echo $(NAME) " - compiled"
 
 clean:
-	@make clean -C libft
 	@/bin/rm -rf $(OBJ)
 	@echo $(NAME) " - Clean all .o files"
 
 fclean: clean
-	@make fclean -C libft
-	@/bin/rm -rf libft*.so
+	@/bin/rm -rf *.so
 	@echo $(NAME) " - Clean executable"
 
 re: fclean all

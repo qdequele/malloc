@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:04:57 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/03 11:43:43 by qdequele         ###   ########.fr       */
+/*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
+/*   Updated: 2017/10/24 14:50:12 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../includes/malloc.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 void	ft_putnbr(int n)
 {
@@ -48,16 +53,11 @@ void	ft_putuint(size_t n)
 	}
 }
 
-void	ft_putnbr_c(char *color, int n)
+void	ft_putstr(char const *s)
 {
-	ft_putstr(color);
-	ft_putnbr(n);
-	ft_putstr("\e[0m");
-}
-
-void	ft_putuint_c(char *color, size_t n)
-{
-	ft_putstr(color);
-	ft_putnbr(n);
-	ft_putstr("\e[0m");
+	while (*s)
+	{
+		ft_putchar(*s);
+		s = s + 1;
+	}
 }

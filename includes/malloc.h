@@ -6,14 +6,13 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/05 12:59:53 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/24 14:56:40 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
 # include <sys/mman.h>
-# include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -90,4 +89,14 @@ size_t				calculate(size_t nb, size_t size);
 void				free_block(t_zone **z, void *ptr);
 void				copy_blocks(void *old,
 						size_t old_size, void *new, size_t new_size);
+
+/*
+** PRINT.C
+*/
+
+void				ft_puthex(void *ptr);
+void				ft_putnbr(int n);
+void				ft_putuint(size_t n);
+void				ft_putstr(char const *s);
+
 #endif
