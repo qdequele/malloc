@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/24 14:51:03 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:34:04 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		ft_nbrlen_base(int nb, int base)
 	}
 	return (len);
 }
-
 
 void	ft_puthex(void *ptr)
 {

@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/24 14:56:40 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:34:52 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <pthread.h>
 
 # define PROT PROT_READ | PROT_WRITE
 # define MAP MAP_ANON | MAP_PRIVATE
@@ -28,6 +29,8 @@
 # define VAL(X) *(size_t *)X
 
 # define PAGE_SIZE sysconf(_SC_PAGESIZE)
+
+static pthread_mutex_t	g_mutex_stock = PTHREAD_MUTEX_INITIALIZER;
 
 typedef enum		e_zone_type
 {
@@ -58,12 +61,16 @@ typedef struct		s_mem
 
 void				free(void *ptr);
 void				*realloc(void *ptr, size_t size);
+void				*malloc(size_t size);
+
+void				do_free(void *ptr);
+void				*do_realloc(void *ptr, size_t size);
+void				*do_malloc(size_t size);
 
 /*
 ** MALLOC.C
 */
 
-void				*malloc(size_t size);
 t_zone				*create_zone(size_t size);
 void				zone_addend(t_zone **alst, t_zone *new);
 t_zone				*add_zone(size_t size);
@@ -74,6 +81,7 @@ void				init_all_blocks(t_zone **zone);
 */
 
 void				show_alloc_mem(void);
+int					show_alloc_zone(t_zone **zone);
 int					show_alloc_mem_test(void);
 
 /*

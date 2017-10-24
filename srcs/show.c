@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/06 10:40:40 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:29:46 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,4 @@ int		show_alloc_zone(t_zone **zone)
 		z = z->next;
 	}
 	return (sum);
-}
-
-void	show_alloc_mem(void)
-{
-	size_t		sum;
-
-	sum = show_alloc_zone(get_zones());
-	ft_putstr("Total ");
-	ft_putuint(sum);
-	ft_putstr(" octets\n");
 }

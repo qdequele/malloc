@@ -6,11 +6,11 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/06 10:43:05 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:09:58 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "../includes/malloc.h"
 
 #define M1 (1024 * 1024)
 

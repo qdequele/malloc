@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/24 14:52:33 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/24 15:33:12 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME		=	libft_malloc_$(HOSTTYPE).so
 LINKNAME	=	libft_malloc.so
 EXEC		=	a.out
 _SRC		=	free.c\
+				interface.c\
 				malloc.c\
 				math.c\
 				print.c\

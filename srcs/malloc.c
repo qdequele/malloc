@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:13 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/06 10:30:29 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:09:28 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_zone		*add_zone(size_t size)
 	return (new);
 }
 
-void		*malloc(size_t size)
+void		*do_malloc(size_t size)
 {
 	t_zone	*z;
 	void	*ptr;
