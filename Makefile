@@ -6,7 +6,7 @@
 #    By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 14:57:05 by qdequele          #+#    #+#              #
-#    Updated: 2017/10/24 15:33:12 by qdequele         ###   ########.fr        #
+#    Updated: 2017/10/25 13:08:16 by qdequele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ endif
 #Define the program
 NAME		=	libft_malloc_$(HOSTTYPE).so
 LINKNAME	=	libft_malloc.so
-EXEC		=	a.out
+
 _SRC		=	free.c\
 				interface.c\
 				malloc.c\
