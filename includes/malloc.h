@@ -6,7 +6,7 @@
 /*   By: qdequele <qdequele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:21:17 by qdequele          #+#    #+#             */
-/*   Updated: 2017/10/24 15:34:52 by qdequele         ###   ########.fr       */
+/*   Updated: 2017/10/25 15:21:43 by qdequele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define VAL(X) *(size_t *)X
 
-# define PAGE_SIZE sysconf(_SC_PAGESIZE)
+# define PAGE_SIZE getpagesize()
 
 static pthread_mutex_t	g_mutex_stock = PTHREAD_MUTEX_INITIALIZER;
 
